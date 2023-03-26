@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Demo\DemoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,18 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::controller(DemoController::class)->group(function (){
-    Route::get('/about','about')->name('about');
-    Route::get('/contact','contact')->name('contact')->middleware('c');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Route::get('/about',[DemoController::class,'about']);
-// Route::get('/contact',[DemoController::class,'contact']);
-
-// Route::get('/about', function () {
-//     return view('about');
-// });
-
-// Route::get('/contact', function () {
-//     return view('contact');
-// });
+require __DIR__.'/auth.php';
