@@ -14,7 +14,7 @@
                            {{-- {!! dd($adminData) !!} --}}
                             <h4 class="card-title">Name: {{ $adminData->name }}</h4> <hr>
                             <h4 class="card-title">Email: {{ $adminData->email }}</h4> <hr> 
-                            <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">Edit</button>
+                            <a href="{{ route('edit.profile') }}" class="btn btn-primary btn-rounded waves-effect waves-light">Edit Details</a>
                         </div>
                     </div>
                 </div>            
