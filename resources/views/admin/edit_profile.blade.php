@@ -1,18 +1,7 @@
 @extends('admin.admin_master');
 @section('admin-index')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-<script>
-    $(document).ready(function(){
-        // alert('mandil');
-        $('#image').change(function(e){
-            var reader = new FileReader();
-            reader.onload = function(e){
-                $('#showimage').attr('src',e.target.result)
-            }
-            reader.readAsDataURL(e.target.files['0']);
-        });
-    }); 
-</script>
+
 
     <div class="page-content">
         <div class="container-fluid">
@@ -54,9 +43,20 @@
                 </div> <!-- end col -->
             </div>
         </div>
-    </div
+    </div>
 
-    
+    <script>
+        $(document).ready(function(){
+            // alert('mandil');
+            $('#image').change(function(e){
+                var reader = new FileReader();
+                reader.onload = function(e){
+                    $('#showimage').attr('src',e.target.result)
+                }
+                reader.readAsDataURL(e.target.files['0']);
+            });
+        }); 
+    </script>
    
 
    
