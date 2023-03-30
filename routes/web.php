@@ -37,6 +37,8 @@ Route::controller(AdminController::class)->group(function(){
     Route::get('/admin/profile','profile')->name('admin.profile');
     Route::get('/edit/profile','editprofile')->name('edit.profile');
     Route::post('/update/profile','updateprofile')->name('update.profile');
+    Route::get('/change/password','changepassword')->name('change.password');
+    Route::post('/update/password','updatepassword')->name('update.password');
 });
 
 require __DIR__.'/auth.php';

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -39,8 +40,9 @@ class AdminController extends Controller
 
     public function updateprofile(Request $request){
         // print_r($request);
-        $id= Auth::user()->id;
-        $adminData = User::find($id);
+        // $id= Auth::user()->id;
+        // $adminData = User::find($id);
+        $adminData = User::find(Auth::id());
         $adminData->name = $request->name;  //from the name attritube
         $adminData->email = $request->email;
         if ($request->file('image_profile')){
@@ -58,5 +60,32 @@ class AdminController extends Controller
         );
         return redirect()->route('admin.profile')->with($notification);
     }
+
+    public function changepassword(Request $request){
+        // $id= Auth::user()->id;
+        // $adminData = User::find($id);
+
+        return view('admin.change_password');
+    }
+
+    public function updatepassword(Request $request){
+        $validateData = $request->validate([
+            'oldpassword' => 'required',
+            'newpassword' => 'required',
+            'confirmpassword' => 'required|same:newpassword'
+        ]);
+        $hashPassword = Auth::user()->password;
+        if (Hash::check($request->oldpassword,$hashPassword)) {
+            $users = User::find(Auth::id());
+            $users->password = bcrypt($request->newpassword);
+            $users->save();
+        }else{
+            session()->flash('message','old Password is not match');
+            return redirect()->back();  
+        }
+        session()->flash('message','Password updated successfully');
+        return redirect()->back();
+    }
+
 }
 
