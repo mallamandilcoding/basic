@@ -6,7 +6,7 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <center class="mt-3">
-                            <img class=" img-thumbnail rounded-circle avatar-xl" src="{{ asset('backend/assets/images/small/img-5.jpg') }}" alt="Card image cap">
+                            <img class=" img-thumbnail rounded-circle avatar-xl" src="{{ (!empty($adminData['image_profile']))? url('upload/admin_images/'.$adminData->image_profile) : url('upload/no_image.png') }}" alt="Card image cap">
                         </center>
 
                         <div class="card-body">

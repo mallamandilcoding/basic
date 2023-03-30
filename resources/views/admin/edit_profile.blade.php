@@ -11,7 +11,8 @@
                         <div class="card-body">
 
                             <h4 class="card-title">Edit Profile Page</h4>
-                            <form action="">
+                            <form action="{{ route('update.profile')}}" method="post" enctype="multipart/form-data">
+                                @csrf
                                 <div class="row mb-3">
                                     <label for="name" class="col-sm-2 col-form-label">Name</label>
                                     <div class="col-sm-10">
@@ -27,13 +28,13 @@
                                 <div class="row mb-3">
                                     <label for="image" class="col-sm-2 col-form-label">Profile Image</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" id="image" name="image">
+                                        <input class="form-control" type="file" id="image" name="image_profile">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="showimage" class="col-sm-2 col-form-label"></label>
                                     <div class="col-sm-10">
-                                        <img class=" avatar-md" src="{{ asset('backend/assets/images/small/img-5.jpg') }}" alt="Card image cap" id="showimage">
+                                        <img class=" avatar-md" src="{{ (!empty($adminData['image_profile']))? url('upload/admin_images/'.$adminData->image_profile) : url('upload/no_image.png') }}" alt="Card image cap" id="showimage">
                                     </div>
                                 </div>
                                 <input type="submit" class="btn btn-info waves-effect waves-light" value="Update Profile">
