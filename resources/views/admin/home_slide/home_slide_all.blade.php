@@ -60,10 +60,10 @@
     <script>
         $(document).ready(function(){
             // alert('mandil');
-            $('#image').change(function(e){
+            $('#home_slide').change(function(e){
                 var reader = new FileReader();
                 reader.onload = function(e){
-                    $('#showimage').attr('src',e.target.result)
+                    $('#home_slide_update').attr('src',e.target.result)
                 }
                 reader.readAsDataURL(e.target.files['0']);
             });
