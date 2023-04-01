@@ -46,6 +46,7 @@ Route::controller(AdminController::class)->group(function(){
 //Home slide
 Route::controller(HomeSliderController::class)->group(function(){
     Route::get('/home/slide','HomeSlide')->name('home.slide');
+    Route::post('/update/slide','UpdateSlide')->name('update.slide');
 });
 
 require __DIR__.'/auth.php';
